@@ -1,22 +1,16 @@
 package chepsi.anime.app.data.home.repository
 
-import chepsi.anime.app.domain.home.model.AnimeDomainModel
+import chepsi.anime.app.data.home.mappers.AnimeApiToDataMapper.toData
+import chepsi.anime.app.data.home.mappers.toDomain
+import chepsi.anime.app.datasource.remote.anime.source.AnimeRemoteSource
 import chepsi.anime.app.domain.home.model.HomeDashboardDomainModel
 import chepsi.anime.app.domain.home.repository.HomeRepository
 import kotlinx.coroutines.flow.flow
 
-class HomeDataRepository : HomeRepository {
+class HomeDataRepository(private val animeRemoteSource: AnimeRemoteSource) : HomeRepository {
     override suspend fun fetchHomeDashboardInformation() = flow {
-        emit(mockResponse())
+        val response = animeRemoteSource.fetchAnime()
+        val dataModel = response.data?.map { it.toData() } ?: emptyList()
+        emit(HomeDashboardDomainModel(anime = dataModel.map { it.toDomain() }))
     }
-
-    private fun mockResponse() = HomeDashboardDomainModel(
-        anime = (0 until 25).map {
-            AnimeDomainModel(
-                name = "Fullmetal Alchemist: Brotherhood",
-                imageUrl = "https://cdn.myanimelist.net/images/anime/1208/94745.jpg",
-                score = "9.1"
-            )
-        }
-    )
 }

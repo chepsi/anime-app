@@ -1,5 +1,7 @@
 package chepsi.anime.app.di
 
+import chepsi.anime.app.datasource.remote.anime.source.AnimeRemoteDataSource
+import chepsi.anime.app.datasource.remote.anime.source.AnimeRemoteSource
 import chepsi.anime.app.datasource.remote.utils.HttpClientFactory
 import dagger.Module
 import dagger.Provides
@@ -21,4 +23,8 @@ object RemoteDataSourceModule {
     @Provides
     @Singleton
     fun provideHttpClient(engine: HttpClientEngine): HttpClient = HttpClientFactory().create(engine)
+
+    @Provides
+    fun providesAnimeRemoteSource(httpClient: HttpClient): AnimeRemoteSource =
+        AnimeRemoteDataSource(httpClient)
 }

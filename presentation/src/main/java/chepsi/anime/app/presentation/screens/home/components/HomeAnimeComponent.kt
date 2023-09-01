@@ -34,7 +34,7 @@ fun HomeAnimeComponent(anime: AnimePresentationModel) {
             contentScale = ContentScale.FillWidth
         )
         Text(anime.name, modifier = Modifier.fillMaxWidth().padding(horizontal = 4.dp))
-        Text(anime.score, modifier = Modifier.fillMaxWidth().padding(horizontal = 4.dp))
+        Text(anime.score.toString(), modifier = Modifier.fillMaxWidth().padding(horizontal = 4.dp))
         Spacer(modifier = Modifier.height(4.dp))
     }
 }
@@ -45,7 +45,7 @@ private fun HomeAnimeComponentPreview() {
     val anime = AnimePresentationModel(
         name = "Fullmetal Alchemist: Brotherhood",
         imageUrl = "https://cdn.myanimelist.net/images/anime/1208/94745.jpg",
-        score = "9.1"
+        score = 9.1
     )
     AnimeAppTheme {
         HomeAnimeComponent(anime = anime)

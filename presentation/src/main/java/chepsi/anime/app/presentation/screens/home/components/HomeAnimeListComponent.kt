@@ -37,7 +37,7 @@ private fun HomeAnimeListComponentPreview() {
         AnimePresentationModel(
             name = "Fullmetal Alchemist: Brotherhood",
             imageUrl = "https://cdn.myanimelist.net/images/anime/1208/94745.jpg",
-            score = "9.1"
+            score = 9.1
         )
     }
     AnimeAppTheme {

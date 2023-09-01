@@ -48,7 +48,7 @@ class HomeViewModelTest {
                 AnimePresentationModel(
                     name = "Fullmetal Alchemist: Brotherhood",
                     imageUrl = "https://cdn.myanimelist.net/images/anime/1208/94745.jpg",
-                    score = "9.1"
+                    score = 9.1
                 )
             }
         )
@@ -59,9 +59,9 @@ class HomeViewModelTest {
         HomeDashboardDomainModel(
             anime = (0 until 25).map {
                 AnimeDomainModel(
-                    name = "Fullmetal Alchemist: Brotherhood",
+                    title = "Fullmetal Alchemist: Brotherhood",
                     imageUrl = "https://cdn.myanimelist.net/images/anime/1208/94745.jpg",
-                    score = "9.1"
+                    score = 9.1
                 )
             }
         )

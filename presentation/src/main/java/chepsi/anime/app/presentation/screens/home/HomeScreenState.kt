@@ -8,5 +8,5 @@ data class HomeScreenState(
 data class AnimePresentationModel(
     val name: String,
     val imageUrl: String,
-    val score: String
+    val score: Double
 )
