@@ -1,6 +1,7 @@
 plugins {
     alias(libs.plugins.androidLibrary)
     alias(libs.plugins.kotlinAndroid)
+    alias(libs.plugins.junit5)
 }
 
 android {
@@ -26,4 +27,13 @@ android {
 dependencies {
     implementation(project(":datasource:local"))
     implementation(project(":datasource:remote"))
+    implementation(project(":domain"))
+
+    implementation(libs.kotlinx.coroutines.android)
+
+    testImplementation(libs.junit.jupiter.api)
+    testRuntimeOnly(libs.junit.jupiter.engine)
+    testImplementation(libs.junit.jupiter.params)
+    testImplementation(libs.mockk)
+    testImplementation(libs.kotlinx.coroutines.test)
 }
