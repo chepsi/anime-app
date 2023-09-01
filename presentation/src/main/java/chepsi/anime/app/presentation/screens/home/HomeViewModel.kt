@@ -16,8 +16,8 @@ class HomeViewModel @Inject constructor() : ViewModel() {
     fun onFetchAnimeAction() {
         viewModelScope.launch {
             homeScreenState = HomeScreenState(
-                isLoading = true,
-                anime = (0..25).map {
+                isLoading = false,
+                anime = (0 until 25).map {
                     AnimePresentationModel(
                         name = "Fullmetal Alchemist: Brotherhood",
                         imageUrl = "https://cdn.myanimelist.net/images/anime/1208/94745.jpg",

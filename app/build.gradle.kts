@@ -3,6 +3,7 @@ plugins {
     alias(libs.plugins.kotlinAndroid)
     alias(libs.plugins.kotlinKsp)
     alias(libs.plugins.daggerHilt)
+    alias(libs.plugins.junit5)
 }
 
 android {
@@ -50,4 +51,10 @@ dependencies {
     implementation(project(":datasource:remote"))
     implementation(project(":domain"))
     implementation(project(":presentation"))
+
+    testImplementation(libs.junit.jupiter.api)
+    testRuntimeOnly(libs.junit.jupiter.engine)
+    testImplementation(libs.junit.jupiter.params)
+    testImplementation(libs.mockk)
+    testImplementation(libs.kotlinx.coroutines.test)
 }
