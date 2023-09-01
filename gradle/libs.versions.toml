@@ -4,9 +4,12 @@ coil-compose = "2.4.0"
 dagger-hilt = "2.48"
 junit-jupiter-api = "5.9.3"
 junit5 = "1.9.3.0"
+ktor-client = "2.2.2"
+ktor-client-serialization = "1.5.0"
 kotlin = "1.9.0"
 kotlin-ksp = "1.9.0-1.0.12"
 kotlinx-coroutines-test = "1.7.1"
+kotlinx-serialization-json = "1.5.1"
 kt-lint = "11.5.1"
 lifecycle-runtime-ktx = "2.6.1"
 activity-compose = "1.7.2"
@@ -17,6 +20,7 @@ appcompat = "1.6.1"
 core-ktx = "1.10.1"
 navigation-compose = "2.7.1"
 hilt-navigation-compose = "1.0.0"
+timber = "5.0.1"
 
 [libraries]
 androidx-hilt-navigation-compose = { module = "androidx.hilt:hilt-navigation-compose", version.ref = "hilt-navigation-compose" }
@@ -30,6 +34,13 @@ hilt-compiler = { module = "com.google.dagger:hilt-compiler", version.ref = "dag
 junit-jupiter-api = { module = "org.junit.jupiter:junit-jupiter-api", version.ref = "junit-jupiter-api" }
 junit-jupiter-engine = { module = "org.junit.jupiter:junit-jupiter-engine", version.ref = "junit-jupiter-api" }
 junit-jupiter-params = { module = "org.junit.jupiter:junit-jupiter-params", version.ref = "junit-jupiter-api" }
+ktor-client-mock = { module = "io.ktor:ktor-client-mock", version.ref = "ktor-client" }
+kotlinx-serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "kotlinx-serialization-json" }
+ktor-client-android = { module = "io.ktor:ktor-client-android", version.ref = "ktor-client" }
+ktor-client-content-negotiation = { module = "io.ktor:ktor-client-content-negotiation", version.ref = "ktor-client" }
+ktor-client-logging-jvm = { module = "io.ktor:ktor-client-logging-jvm", version.ref = "ktor-client" }
+ktor-client-serialization = { module = "io.ktor:ktor-client-serialization", version.ref = "ktor-client-serialization" }
+ktor-serialization-kotlinx-json = { module = "io.ktor:ktor-serialization-kotlinx-json", version.ref = "ktor-client" }
 kotlinx-coroutines-test = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-test", version.ref = "kotlinx-coroutines-test" }
 lifecycle-runtime-ktx = { group = "androidx.lifecycle", name = "lifecycle-runtime-ktx", version.ref = "lifecycle-runtime-ktx" }
 activity-compose = { group = "androidx.activity", name = "activity-compose", version.ref = "activity-compose" }
@@ -43,6 +54,7 @@ ui-tooling-preview = { group = "androidx.compose.ui", name = "ui-tooling-preview
 ui-test-manifest = { group = "androidx.compose.ui", name = "ui-test-manifest" }
 ui-test-junit4 = { group = "androidx.compose.ui", name = "ui-test-junit4" }
 material3 = { group = "androidx.compose.material3", name = "material3" }
+timber = { module = "com.jakewharton.timber:timber", version.ref = "timber" }
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }
@@ -51,4 +63,5 @@ daggerHilt = { id = "com.google.dagger.hilt.android", version.ref = "dagger-hilt
 junit5 = { id = "de.mannodermaus.android-junit5", version.ref = "junit5" }
 kotlinAndroid = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 kotlinKsp = { id = "com.google.devtools.ksp", version.ref = "kotlin-ksp" }
+kotlinSerialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
 ktLint = { id = "org.jlleitschuh.gradle.ktlint", version.ref = "kt-lint" }
