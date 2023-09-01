@@ -6,7 +6,7 @@ import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import chepsi.anime.app.domain.home.repository.HomeRepository
-import chepsi.anime.app.presentation.screens.home.mapper.AnimeDomainToPresentationMapper.toPresentation
+import chepsi.anime.app.presentation.screens.home.mapper.toPresentation
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
