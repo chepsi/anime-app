@@ -31,6 +31,8 @@ dependencies {
 
     implementation(libs.kotlinx.coroutines.android)
 
+    implementation(libs.timber)
+
     testImplementation(libs.junit.jupiter.api)
     testImplementation(project(":datasource:remote"))
     testRuntimeOnly(libs.junit.jupiter.engine)
