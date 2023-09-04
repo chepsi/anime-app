@@ -26,7 +26,7 @@ class HomeDataRepository(
 
     override suspend fun fetchHomeDashboardInformation(): Flow<HomeDashboardDomainModel> {
         if (isCacheEmpty()) {
-            val fromLocal = fetchFromLocal()
+            val fromLocal = fetchFromCache()
             if (!fromLocal.isNullOrEmpty() && fromLocal.isNotEmpty()) {
                 sharedFlow.emit(HomeDashboardDomainModel(anime = fromLocal.mapToDomain()))
             } else {
@@ -54,11 +54,9 @@ class HomeDataRepository(
         animeLocalSource.saveAnimes(databaseModel)
     }
 
-    private suspend fun fetchFromLocal() = animeLocalSource.fetchAnime().firstOrNull()
+    private suspend fun fetchFromCache() = animeLocalSource.fetchAnime().firstOrNull()
 
-    private suspend fun fetchFromRemote(): List<AnimeDataModel> {
-        return animeRemoteSource.fetchAnime().toData()
-    }
+    private suspend fun fetchFromRemote() = animeRemoteSource.fetchAnime().toData()
 
     private fun AnimeApiResponseModel.toData() = data?.map { it.toData() } ?: emptyList()
 
