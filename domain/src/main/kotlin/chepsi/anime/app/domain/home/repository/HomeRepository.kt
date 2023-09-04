@@ -5,4 +5,6 @@ import kotlinx.coroutines.flow.Flow
 
 interface HomeRepository {
     suspend fun fetchHomeDashboardInformation(): Flow<HomeDashboardDomainModel>
+
+    suspend fun refreshDatabase()
 }

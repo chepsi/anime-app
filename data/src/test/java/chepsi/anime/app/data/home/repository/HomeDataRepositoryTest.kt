@@ -11,10 +11,12 @@ import chepsi.anime.app.domain.home.model.AnimeDomainModel
 import chepsi.anime.app.domain.home.model.HomeDashboardDomainModel
 import io.mockk.clearAllMocks
 import io.mockk.coEvery
+import io.mockk.coVerify
 import io.mockk.every
 import io.mockk.just
 import io.mockk.mockk
 import io.mockk.runs
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.runBlocking
 import org.junit.jupiter.api.AfterEach
@@ -58,6 +60,15 @@ private val givenLocalSourceResponse = AnimeEntityModel(
     source = "Manga",
     createdAt = 10L
 )
+private val expected = HomeDashboardDomainModel(
+    anime = listOf(
+        AnimeDomainModel(
+            title = givenTitle,
+            imageUrl = givenImageUrl,
+            score = givenScore
+        )
+    )
+)
 
 class HomeDataRepositoryTest {
     private lateinit var classUnderTest: HomeDataRepository
@@ -85,21 +96,9 @@ class HomeDataRepositoryTest {
             coEvery { animeRemoteSource.fetchAnime() }.returns(givenRemoteSourceResponse)
 
             // When
-            var actual: HomeDashboardDomainModel? = null
-            classUnderTest.fetchHomeDashboardInformation().collect {
-                actual = it
-            }
+            val actual = classUnderTest.fetchHomeDashboardInformation().first()
 
             // Then
-            val expected = HomeDashboardDomainModel(
-                anime = listOf(
-                    AnimeDomainModel(
-                        title = givenTitle,
-                        imageUrl = givenImageUrl,
-                        score = givenScore
-                    )
-                )
-            )
 
             assertEquals(expected, actual)
         }
@@ -114,22 +113,26 @@ class HomeDataRepositoryTest {
             coEvery { animeLocalSource.saveAnimes(any()) } just runs
 
             // When
-            var actual: HomeDashboardDomainModel? = null
-            classUnderTest.fetchHomeDashboardInformation().collect {
-                actual = it
-            }
+            val actual = classUnderTest.fetchHomeDashboardInformation().first()
 
             // Then
-            val expected = HomeDashboardDomainModel(
-                anime = listOf(
-                    AnimeDomainModel(
-                        title = givenTitle,
-                        imageUrl = givenImageUrl,
-                        score = givenScore
-                    )
-                )
-            )
-
             assertEquals(expected, actual)
         }
+
+    @Test
+    fun `When refreshDatabase Then fetches from remote`() = runBlocking {
+        // Given
+        coEvery { animeLocalSource.saveAnimes(any()) } just runs
+        coEvery { animeRemoteSource.fetchAnime() }.returns(givenRemoteSourceResponse)
+        every { dateTimeUtils.today() }.returns(10L)
+
+        // When
+        classUnderTest.refreshDatabase()
+        val actual = classUnderTest.flow.first()
+
+        // Then
+        coVerify { dateTimeUtils.today() }
+        coVerify { animeLocalSource.saveAnimes(any()) }
+        assertEquals(expected, actual)
+    }
 }

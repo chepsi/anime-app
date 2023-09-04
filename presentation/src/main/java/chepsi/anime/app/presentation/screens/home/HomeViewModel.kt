@@ -27,4 +27,11 @@ class HomeViewModel @Inject constructor(
             }
         }
     }
+
+    fun onRefreshAction() {
+        viewModelScope.launch {
+            homeScreenState = homeScreenState.copy(isLoading = true)
+            homeRepository.refreshDatabase()
+        }
+    }
 }
