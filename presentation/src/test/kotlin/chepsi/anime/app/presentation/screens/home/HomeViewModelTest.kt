@@ -5,7 +5,10 @@ import chepsi.anime.app.domain.home.model.HomeDashboardDomainModel
 import chepsi.anime.app.domain.home.repository.HomeRepository
 import io.mockk.clearAllMocks
 import io.mockk.coEvery
+import io.mockk.coVerify
+import io.mockk.just
 import io.mockk.mockk
+import io.mockk.runs
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.test.UnconfinedTestDispatcher
@@ -52,6 +55,20 @@ class HomeViewModelTest {
                 )
             }
         )
+        assertEquals(expected, actual)
+    }
+
+    @Test
+    fun `When onRefreshAction Then runs`() {
+        // Given
+        coEvery { homeRepository.refreshDatabase() } just runs
+        // When
+        classUnderTest.onRefreshAction()
+        val actual = classUnderTest.homeScreenState
+
+        // Then
+        val expected = HomeScreenState(isLoading = true)
+        coVerify { homeRepository.refreshDatabase() }
         assertEquals(expected, actual)
     }
 

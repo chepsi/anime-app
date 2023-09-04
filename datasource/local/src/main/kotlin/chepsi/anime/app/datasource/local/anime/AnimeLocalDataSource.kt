@@ -71,6 +71,7 @@ class AnimeLocalDataSource(
     }
 
     override suspend fun saveAnimes(request: List<AnimeEntityModel>) {
+        db.dropTables(db.writableDatabase)
         runBlocking {
             request.forEach { anime ->
                 saveAnime(anime)

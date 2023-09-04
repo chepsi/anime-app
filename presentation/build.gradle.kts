@@ -42,6 +42,8 @@ android {
 
 dependencies {
     implementation(project(":domain"))
+    implementation(libs.androidx.material)
+
     implementation(libs.lifecycle.runtime.ktx)
     implementation(libs.activity.compose)
     implementation(platform(libs.compose.bom))
@@ -76,6 +78,7 @@ kotlin {
         all {
             languageSettings.apply {
                 optIn("kotlinx.coroutines.ExperimentalCoroutinesApi")
+                optIn("androidx.compose.material.ExperimentalMaterialApi")
             }
         }
     }
