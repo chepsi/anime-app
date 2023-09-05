@@ -6,7 +6,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import chepsi.anime.app.presentation.screens.favorites.FavoritesScreen
 import chepsi.anime.app.presentation.screens.home.HomeScreen
-import chepsi.anime.app.presentation.screens.settings.SettingsScreen
+import chepsi.anime.app.presentation.screens.search.SearchScreen
 
 @Composable
 fun NavigationComponent(
@@ -24,9 +24,9 @@ fun NavigationComponent(
             FavoritesScreen()
         }
 
-        composable(Screens.Settings.route) {
-            updateTitle(Screens.Settings.title)
-            SettingsScreen()
+        composable(Screens.Search.route) {
+            updateTitle(Screens.Search.title)
+            SearchScreen()
         }
     }
 }

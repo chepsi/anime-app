@@ -31,6 +31,8 @@ dependencies {
 
     implementation(libs.kotlinx.coroutines.android)
 
+    implementation(libs.core.ktx)
+
     implementation(libs.timber)
 
     testImplementation(libs.junit.jupiter.api)
