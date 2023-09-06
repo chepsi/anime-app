@@ -6,6 +6,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import chepsi.anime.app.domain.search.model.SearchResponseDomainModel
 import chepsi.anime.app.domain.search.repository.SearchRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
@@ -21,11 +22,7 @@ class SearchViewModel @Inject constructor(
         setIsLoading()
         viewModelScope.launch {
             searchRepository.searchImage(request).collect { response ->
-                searchScreenState = searchScreenState.copy(
-                    title = response.title,
-                    episode = response.episode,
-                    isLoading = false
-                )
+                updateState(response)
             }
         }
     }
@@ -34,26 +31,40 @@ class SearchViewModel @Inject constructor(
         setIsLoading()
         viewModelScope.launch {
             searchRepository.searchImage(request).collect { response ->
-                searchScreenState = searchScreenState.copy(
-                    title = response.title,
-                    episode = response.episode,
-                    isLoading = false
-                )
+                updateState(response)
             }
         }
+    }
+
+    private fun updateState(response: SearchResponseDomainModel) {
+        searchScreenState = searchScreenState.copy(
+            title = response.title,
+            episode = response.episode,
+            isLoading = false,
+            errorMessage = response.error,
+            isError = !response.error.isNullOrBlank()
+        )
     }
 
     fun onUpdateUriAction(uri: Uri) {
         searchScreenState = searchScreenState.copy(
             imageUri = uri,
-            imageUrl = null
+            imageUrl = null,
+            title = "",
+            episode = "",
+            errorMessage = null,
+            isError = false
         )
     }
 
     fun onUpdateUrlAction(url: String) {
         searchScreenState = searchScreenState.copy(
             imageUri = null,
-            imageUrl = url
+            imageUrl = url,
+            title = "",
+            episode = "",
+            errorMessage = null,
+            isError = false
         )
     }
 

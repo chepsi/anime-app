@@ -3,7 +3,6 @@ package chepsi.anime.app.datasource.remote.search.model
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
-import kotlinx.serialization.builtins.ListSerializer
 import kotlinx.serialization.builtins.serializer
 import kotlinx.serialization.json.JsonArray
 import kotlinx.serialization.json.JsonElement
@@ -24,7 +23,7 @@ data class SearchAnimeApiResponse(
         val anilist: Int? = null,
         @Serializable(with = UserListSerializer::class)
         @SerialName("episode")
-        val episode: List<String> = emptyList(),
+        val episode: String? = null,
         @SerialName("filename")
         val filename: String? = null,
         @SerialName("from")
@@ -39,9 +38,8 @@ data class SearchAnimeApiResponse(
         val video: String? = null
     )
 }
-
 object UserListSerializer :
-    JsonTransformingSerializer<List<String>>(ListSerializer(String.serializer())) {
+    JsonTransformingSerializer<String>(String.serializer()) {
     override fun transformDeserialize(element: JsonElement): JsonElement =
-        if (element !is JsonArray) JsonArray(listOf(element)) else element
+        if (element is JsonArray) element.first() else element
 }

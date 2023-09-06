@@ -1,6 +1,7 @@
 package chepsi.anime.app.datasource.remote.search.source
 
 import chepsi.anime.app.datasource.remote.search.model.SearchAnimeApiResponse
+import chepsi.anime.app.datasource.remote.utils.safeApiCall
 import io.ktor.client.HttpClient
 import io.ktor.client.call.body
 import io.ktor.client.request.forms.formData
@@ -23,8 +24,10 @@ class SearchRemoteDataSource(private val httpClient: HttpClient) : SearchRemoteS
             }
         ).body<SearchAnimeApiResponse>()
 
-    override suspend fun searchImage(request: String) =
+    override suspend fun searchImage(request: String) = safeApiCall {
         httpClient.get(searchImageUrl) {
             parameter("url", request)
         }.body<SearchAnimeApiResponse>()
+    }
+
 }

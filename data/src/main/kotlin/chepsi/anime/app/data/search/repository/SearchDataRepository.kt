@@ -4,7 +4,9 @@ import chepsi.anime.app.data.search.mapper.toData
 import chepsi.anime.app.datasource.remote.search.source.SearchRemoteSource
 import chepsi.anime.app.domain.search.model.SearchResponseDomainModel
 import chepsi.anime.app.domain.search.repository.SearchRepository
+import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.flow
+import timber.log.Timber
 
 class SearchDataRepository(private val searchRemoteSource: SearchRemoteSource) : SearchRepository {
     override suspend fun searchImage(request: ByteArray) = flow {
@@ -21,5 +23,9 @@ class SearchDataRepository(private val searchRemoteSource: SearchRemoteSource) :
             val domain = SearchResponseDomainModel(it.title, it.episode, result.error)
             emit(domain)
         }
+    }.catch {
+        val result = SearchResponseDomainModel("", "", error = it.message)
+        emit(result)
+        Timber.e(it)
     }
 }
