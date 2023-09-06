@@ -91,7 +91,8 @@ fun SearchMainComponent(
             Button(
                 onClick = {
                     onSearchImageUsingUriAction(it)
-                }, modifier = Modifier
+                },
+                modifier = Modifier
                     .fillMaxWidth()
                     .padding(horizontal = 20.dp)
             ) {
@@ -104,11 +105,13 @@ fun SearchMainComponent(
         }
 
         screenState.imageUrl?.let {
-            Button(onClick = {
-                onSearchImageUsingUrlAction(it)
-            }, modifier = Modifier
-                .fillMaxWidth()
-                .padding(horizontal = 20.dp)
+            Button(
+                onClick = {
+                    onSearchImageUsingUrlAction(it)
+                },
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(horizontal = 20.dp)
             ) {
                 if (screenState.isLoading) {
                     CircularProgressIndicator(color = Color.Red)
