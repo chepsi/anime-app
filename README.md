@@ -58,6 +58,11 @@ The Project has 5 main different modules with the following names and libraries 
 - [Ktlint](https://github.com/JLLeitschuh/ktlint-gradle)
 - [Version Catalog](https://medium.com/@callmeryan/gradle-version-catalog-728111fa210f)
 
+* Workflows
+
+- The app has a (github action workflow)[https://github.com/chepsi/anime-app/actions] to run tests
+  and build the application once there is a pr created to the main branch
+
 # Architecture
 
 ![Add MVVM diagram](/documents/mvvm.png)
