@@ -58,6 +58,8 @@ dependencies {
 
     implementation(libs.navigation.compose)
 
+    implementation(libs.androidx.ui.text.google.fonts)
+
     implementation(libs.coil.compose)
 
     debugImplementation(libs.ui.tooling)

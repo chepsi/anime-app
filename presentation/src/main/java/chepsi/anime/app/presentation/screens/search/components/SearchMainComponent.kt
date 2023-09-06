@@ -14,6 +14,7 @@ import androidx.compose.material.CircularProgressIndicator
 import androidx.compose.material.OutlinedButton
 import androidx.compose.material.OutlinedTextField
 import androidx.compose.material.Text
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -87,9 +88,13 @@ fun SearchMainComponent(
             }
         }
         screenState.imageUri?.let {
-            Button(onClick = {
-                onSearchImageUsingUriAction(it)
-            }) {
+            Button(
+                onClick = {
+                    onSearchImageUsingUriAction(it)
+                }, modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(horizontal = 20.dp)
+            ) {
                 if (screenState.isLoading) {
                     CircularProgressIndicator(color = Color.Red)
                 } else {
@@ -101,7 +106,10 @@ fun SearchMainComponent(
         screenState.imageUrl?.let {
             Button(onClick = {
                 onSearchImageUsingUrlAction(it)
-            }) {
+            }, modifier = Modifier
+                .fillMaxWidth()
+                .padding(horizontal = 20.dp)
+            ) {
                 if (screenState.isLoading) {
                     CircularProgressIndicator(color = Color.Red)
                 } else {
@@ -111,8 +119,16 @@ fun SearchMainComponent(
         }
 
         if (screenState.title.isNotBlank() && !screenState.isError) {
-            Text("Title: ${screenState.title}", modifier = Modifier.padding(20.dp))
-            Text("Episode: ${screenState.episode}", modifier = Modifier.padding(20.dp))
+            Text(
+                "Title: ${screenState.title}",
+                modifier = Modifier.padding(start = 20.dp, bottom = 10.dp),
+                style = MaterialTheme.typography.bodyMedium
+            )
+            Text(
+                "Episode: ${screenState.episode}",
+                modifier = Modifier.padding(start = 20.dp),
+                style = MaterialTheme.typography.bodyMedium
+            )
         }
         if (screenState.isError && screenState.errorMessage != null) {
             Text("Error: ${screenState.errorMessage}", modifier = Modifier.padding(20.dp))

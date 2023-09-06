@@ -26,7 +26,7 @@ fun BottomNavigationComponent(controller: NavHostController) {
             NavigationBarItem(
                 selected = selected,
                 icon = { Icon(screen.icon, screen.title) },
-                label = { Text(screen.title) },
+                label = { Text(screen.title, style = MaterialTheme.typography.titleSmall) },
                 alwaysShowLabel = true,
                 onClick = {
                     controller.navigate(screen.route) {
