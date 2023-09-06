@@ -14,13 +14,13 @@ No special requirement is needed to run your application
 
 # Design/Architectural decisions 📐
 
-The project makes use of common android patterns in modern android codebases.
+The project makes use of common Android patterns in modern Android codebases.
 
 **Project Structure**
-The Project has 5 main different modules with the following names and libraries used
+The Project has 5 main modules with the following names and libraries used
 
 1. **Presentation**
-   Contains All the UI logic; Screens, ViewModel, Theme etc.
+   Contains All the UI logic; Screens, ViewModel, Theme, etc.
    - [Compose](https://developer.android.com/jetpack/compose)
    - [HiltCompose](https://developer.android.com/jetpack/compose/libraries)
    - [Google Fonts](https://developer.android.com/jetpack/compose/text/fonts)
@@ -29,7 +29,7 @@ The Project has 5 main different modules with the following names and libraries 
    Contains Repository Interface and Domain Models
 
 3. **Data**
-   Contains Repository Implementation and Data Models as well as mappers from DataSources to Data
+   Contains Repository Implementation and Data Models as well as mappers from Data Sources to Data
    and Data to Domain
 
 4. **LocalDataSource**
@@ -60,8 +60,8 @@ The Project has 5 main different modules with the following names and libraries 
 
 * Workflows
 
-- The app has a (github action workflow)[https://github.com/chepsi/anime-app/actions] to run tests
-  and build the application once there is a pr created to the main branch
+- The app has a (GitHub action workflow)[https://github.com/chepsi/anime-app/actions] to run tests
+  and build the application once there is a PR created to the main branch
 
 # Architecture
 
