@@ -18,7 +18,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import chepsi.anime.app.presentation.screens.home.model.AnimePresentationModel
 import chepsi.anime.app.presentation.theme.AnimeAppTheme
-import chepsi.anime.app.presentation.theme.PearlWhite
+import chepsi.anime.app.presentation.theme.PrimaryLight
 import coil.compose.AsyncImage
 
 @Composable
@@ -26,8 +26,8 @@ fun FavoriteComponent(favorite: AnimePresentationModel) {
     Row(
         modifier = Modifier
             .padding(horizontal = 10.dp)
-            .background(PearlWhite)
             .clip(RoundedCornerShape(10.dp))
+            .background(PrimaryLight)
             .fillMaxWidth(),
         verticalAlignment = Alignment.CenterVertically
     ) {
@@ -40,7 +40,9 @@ fun FavoriteComponent(favorite: AnimePresentationModel) {
             contentScale = ContentScale.FillWidth
         )
         Column(
-            modifier = Modifier.padding(10.dp)
+            modifier = Modifier
+                .padding(10.dp)
+                .clip(RoundedCornerShape(10.dp))
         ) {
             Text(
                 text = "Title: ${favorite.name}",

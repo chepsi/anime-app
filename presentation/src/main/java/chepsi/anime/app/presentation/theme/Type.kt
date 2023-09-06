@@ -12,34 +12,39 @@ val Typography = Typography(
         fontWeight = FontWeight.Normal,
         fontSize = 16.sp,
         lineHeight = 14.sp,
-        letterSpacing = 0.5.sp
+        letterSpacing = 0.5.sp,
+        color = PrimaryDark
     ),
     bodyMedium = TextStyle(
         fontFamily = ralewayFontFamily,
         fontWeight = FontWeight.SemiBold,
         fontSize = 14.sp,
         lineHeight = 14.sp,
-        letterSpacing = 0.5.sp
+        letterSpacing = 0.5.sp,
+        color = PrimaryDark
     ),
     bodySmall = TextStyle(
         fontFamily = ralewayFontFamily,
         fontWeight = FontWeight.Normal,
         fontSize = 14.sp,
         lineHeight = 14.sp,
-        letterSpacing = 0.5.sp
+        letterSpacing = 0.5.sp,
+        color = PrimaryDark
     ),
     titleMedium = TextStyle(
         fontFamily = ralewayFontFamily,
         fontWeight = FontWeight.SemiBold,
         fontSize = 16.sp,
         lineHeight = 14.sp,
-        letterSpacing = 0.5.sp
+        letterSpacing = 0.5.sp,
+        color = PrimaryDark
     ),
     titleSmall = TextStyle(
         fontFamily = ralewayFontFamily,
         fontWeight = FontWeight.SemiBold,
         fontSize = 14.sp,
         lineHeight = 14.sp,
-        letterSpacing = 0.5.sp
+        letterSpacing = 0.5.sp,
+        color = PrimaryDark
     )
 )

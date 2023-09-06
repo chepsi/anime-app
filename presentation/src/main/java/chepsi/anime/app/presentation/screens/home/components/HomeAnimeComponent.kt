@@ -28,7 +28,7 @@ import androidx.compose.ui.unit.dp
 import chepsi.anime.app.domain.home.model.AddFavoriteRequestModel
 import chepsi.anime.app.presentation.screens.home.model.AnimePresentationModel
 import chepsi.anime.app.presentation.theme.AnimeAppTheme
-import chepsi.anime.app.presentation.theme.PearlWhite
+import chepsi.anime.app.presentation.theme.PrimaryLight
 import coil.compose.AsyncImage
 
 @Composable
@@ -40,8 +40,8 @@ fun HomeAnimeComponent(
         Column(
             modifier = Modifier
                 .clip(RoundedCornerShape(10.dp))
-                .background(PearlWhite)
-                .fillMaxWidth()
+                .background(PrimaryLight)
+                .fillMaxWidth(),
         ) {
             AsyncImage(
                 model = anime.imageUrl,

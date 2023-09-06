@@ -10,4 +10,5 @@ val Purple40 = Color(0xFF6650a4)
 val PurpleGrey40 = Color(0xFF625b71)
 val Pink40 = Color(0xFF7D5260)
 
-val PearlWhite = Color(0xffF8F6F0)
+val PrimaryDark = Color(0xFF151523)
+val PrimaryLight = Color(0xFFE4E4E4)

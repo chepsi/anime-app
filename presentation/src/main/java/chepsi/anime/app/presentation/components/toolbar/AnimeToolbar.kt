@@ -11,17 +11,20 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import chepsi.anime.app.presentation.theme.AnimeAppTheme
+import chepsi.anime.app.presentation.theme.PrimaryDark
+import chepsi.anime.app.presentation.theme.PrimaryLight
 
 @Composable
 fun AnimeToolbar(title: String) {
-    TopAppBar {
+    TopAppBar(backgroundColor = PrimaryLight) {
         Text(
             text = title,
             modifier = Modifier
                 .padding(start = 10.dp)
                 .fillMaxWidth(),
             style = MaterialTheme.typography.titleMedium,
-            textAlign = TextAlign.Center
+            textAlign = TextAlign.Center,
+            color = PrimaryDark
         )
     }
 }
