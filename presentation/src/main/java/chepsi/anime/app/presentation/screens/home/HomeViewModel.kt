@@ -5,6 +5,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import chepsi.anime.app.domain.home.model.AddFavoriteRequestModel
 import chepsi.anime.app.domain.home.repository.HomeRepository
 import chepsi.anime.app.presentation.screens.home.mapper.toPresentation
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -32,6 +33,12 @@ class HomeViewModel @Inject constructor(
         viewModelScope.launch {
             homeScreenState = homeScreenState.copy(isLoading = true)
             homeRepository.refreshDatabase()
+        }
+    }
+
+    fun onUpdateFavorite(request: AddFavoriteRequestModel) {
+        viewModelScope.launch {
+            homeRepository.addFavorite(request = request)
         }
     }
 }

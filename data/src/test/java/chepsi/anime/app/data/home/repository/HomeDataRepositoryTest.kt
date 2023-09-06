@@ -60,12 +60,26 @@ private val givenLocalSourceResponse = AnimeEntityModel(
     source = "Manga",
     createdAt = 10L
 )
-private val expected = HomeDashboardDomainModel(
+private val expected0 = HomeDashboardDomainModel(
     anime = listOf(
         AnimeDomainModel(
             title = givenTitle,
             imageUrl = givenImageUrl,
-            score = givenScore
+            score = givenScore,
+            isFavorite = true,
+            id = 1
+        )
+    )
+)
+
+private val expected1 = HomeDashboardDomainModel(
+    anime = listOf(
+        AnimeDomainModel(
+            title = givenTitle,
+            imageUrl = givenImageUrl,
+            score = givenScore,
+            isFavorite = false,
+            id = 0
         )
     )
 )
@@ -100,7 +114,7 @@ class HomeDataRepositoryTest {
 
             // Then
 
-            assertEquals(expected, actual)
+            assertEquals(expected0, actual)
         }
 
     @Test
@@ -116,7 +130,7 @@ class HomeDataRepositoryTest {
             val actual = classUnderTest.fetchHomeDashboardInformation().first()
 
             // Then
-            assertEquals(expected, actual)
+            assertEquals(expected1, actual)
         }
 
     @Test
@@ -133,6 +147,6 @@ class HomeDataRepositoryTest {
         // Then
         coVerify { dateTimeUtils.today() }
         coVerify { animeLocalSource.saveAnimes(any()) }
-        assertEquals(expected, actual)
+        assertEquals(expected1, actual)
     }
 }

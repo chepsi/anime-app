@@ -12,20 +12,26 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import chepsi.anime.app.presentation.screens.home.AnimePresentationModel
+import chepsi.anime.app.domain.home.model.AddFavoriteRequestModel
+import chepsi.anime.app.presentation.screens.home.model.AnimePresentationModel
 import chepsi.anime.app.presentation.theme.AnimeAppTheme
 
 @Composable
-fun HomeAnimeListComponent(animes: List<AnimePresentationModel>) {
+fun HomeAnimeListComponent(
+    animes: List<AnimePresentationModel>,
+    onUpdateFavoriteItem: (AddFavoriteRequestModel) -> Unit
+) {
     LazyVerticalGrid(
-        modifier = Modifier.fillMaxSize().background(Color.White),
+        modifier = Modifier
+            .fillMaxSize()
+            .background(Color.White),
         columns = GridCells.Adaptive(minSize = 160.dp),
         contentPadding = PaddingValues(horizontal = 4.dp, vertical = 20.dp),
         horizontalArrangement = Arrangement.spacedBy(10.dp),
         verticalArrangement = Arrangement.spacedBy(10.dp)
     ) {
         items(animes) { anime ->
-            HomeAnimeComponent(anime)
+            HomeAnimeComponent(anime = anime, onUpdateFavoriteItem = onUpdateFavoriteItem)
         }
     }
 }
@@ -37,10 +43,12 @@ private fun HomeAnimeListComponentPreview() {
         AnimePresentationModel(
             name = "Fullmetal Alchemist: Brotherhood",
             imageUrl = "https://cdn.myanimelist.net/images/anime/1208/94745.jpg",
-            score = 9.1
+            score = 9.1,
+            isFavorite = true,
+            id = 1
         )
     }
     AnimeAppTheme {
-        HomeAnimeListComponent(anime)
+        HomeAnimeListComponent(animes = anime, onUpdateFavoriteItem = {})
     }
 }

@@ -2,6 +2,7 @@ package chepsi.anime.app.datasource.local.anime
 
 import android.content.ContentValues
 import chepsi.anime.app.datasource.local.anime.model.AnimeEntityModel
+import chepsi.anime.app.datasource.local.anime.model.AnimeFavouriteUpdateModel
 import chepsi.anime.app.datasource.local.database.AnimeContract
 import chepsi.anime.app.datasource.local.database.AnimeContract.AnimeEntry.COLUMN_NAME_ANIME_ID
 import chepsi.anime.app.datasource.local.database.AnimeContract.AnimeEntry.COLUMN_NAME_CREATED_AT
@@ -80,6 +81,19 @@ class AnimeLocalDataSource(
         closeDatabase()
     }
 
+    override suspend fun addFavorite(request: AnimeFavouriteUpdateModel) {
+        val writeableDb = db.writableDatabase
+        val values = contentValues.apply {
+            put(COLUMN_NAME_IS_FAVOURITE, request.isFavourite)
+        }
+        val where = "$COLUMN_NAME_ANIME_ID=${request.id}"
+        writeableDb.update(
+            AnimeContract.AnimeEntry.TABLE_NAME,
+            values,
+            where,
+            null
+        )
+    }
 
     private fun saveAnime(request: AnimeEntityModel) {
         val writeable = db.writableDatabase

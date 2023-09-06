@@ -29,7 +29,12 @@ fun HomeScreen(homeViewModel: HomeViewModel = hiltViewModel()) {
     Box(
         Modifier.pullRefresh(pullRefreshState)
     ) {
-        HomeAnimeListComponent(screenState.anime)
+        HomeAnimeListComponent(
+            animes = screenState.anime,
+            onUpdateFavoriteItem = { request ->
+                homeViewModel.onUpdateFavorite(request)
+            }
+        )
 
         PullRefreshIndicator(
             isRefreshing,

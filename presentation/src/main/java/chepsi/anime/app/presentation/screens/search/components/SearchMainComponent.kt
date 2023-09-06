@@ -110,7 +110,6 @@ fun SearchMainComponent(
             }
         }
 
-
         if (screenState.title.isNotBlank() && !screenState.isError) {
             Text("Title: ${screenState.title}", modifier = Modifier.padding(20.dp))
             Text("Episode: ${screenState.episode}", modifier = Modifier.padding(20.dp))

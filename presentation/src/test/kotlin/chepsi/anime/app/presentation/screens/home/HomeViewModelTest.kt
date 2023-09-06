@@ -1,8 +1,10 @@
 package chepsi.anime.app.presentation.screens.home
 
+import chepsi.anime.app.domain.home.model.AddFavoriteRequestModel
 import chepsi.anime.app.domain.home.model.AnimeDomainModel
 import chepsi.anime.app.domain.home.model.HomeDashboardDomainModel
 import chepsi.anime.app.domain.home.repository.HomeRepository
+import chepsi.anime.app.presentation.screens.home.model.AnimePresentationModel
 import io.mockk.clearAllMocks
 import io.mockk.coEvery
 import io.mockk.coVerify
@@ -51,7 +53,9 @@ class HomeViewModelTest {
                 AnimePresentationModel(
                     name = "Fullmetal Alchemist: Brotherhood",
                     imageUrl = "https://cdn.myanimelist.net/images/anime/1208/94745.jpg",
-                    score = 9.1
+                    score = 9.1,
+                    isFavorite = false,
+                    id = 1
                 )
             }
         )
@@ -72,13 +76,29 @@ class HomeViewModelTest {
         assertEquals(expected, actual)
     }
 
+    @Test
+    fun `When onUpdateFavorite Then runs`() {
+        // Given
+        val givenRequest = AddFavoriteRequestModel(1, true)
+        coEvery { homeRepository.addFavorite(givenRequest) } just runs
+
+
+        // When
+        classUnderTest.onUpdateFavorite(givenRequest)
+
+        // Then
+        coVerify { homeRepository.addFavorite(givenRequest) }
+    }
+
     private fun mockDomainResponse() = flowOf(
         HomeDashboardDomainModel(
             anime = (0 until 25).map {
                 AnimeDomainModel(
                     title = "Fullmetal Alchemist: Brotherhood",
                     imageUrl = "https://cdn.myanimelist.net/images/anime/1208/94745.jpg",
-                    score = 9.1
+                    score = 9.1,
+                    isFavorite = false,
+                    id = 1
                 )
             }
         )

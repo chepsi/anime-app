@@ -6,5 +6,7 @@ import chepsi.anime.app.domain.home.model.AnimeDomainModel
 fun AnimeDataModel.toDomain() = AnimeDomainModel(
     title = title,
     imageUrl = imageUrl,
-    score = score
+    score = score,
+    isFavorite = isFavourite,
+    id = animeId
 )
