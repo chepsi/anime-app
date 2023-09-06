@@ -41,7 +41,7 @@ fun HomeAnimeComponent(
             modifier = Modifier
                 .clip(RoundedCornerShape(10.dp))
                 .background(PrimaryLight)
-                .fillMaxWidth(),
+                .fillMaxWidth()
         ) {
             AsyncImage(
                 model = anime.imageUrl,
